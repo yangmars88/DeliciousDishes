@@ -23,7 +23,8 @@ var express=require("express"),
        
 //seedDB();  //this is a function from seeds.js module.
 
-mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
+mongoose.connect("mongodb://yangmars:20050930mars@ds149252.mlab.com:49252/yelp_camp",{ useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));  //__dirname will be the directory where public stays: environment/YelpCamp/v5 
