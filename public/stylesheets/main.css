@@ -115,6 +115,6 @@ span .align-bottom {
 	bottom: 0; 
 	left: 0; 
 	right: 0;
-	min-height: 100%; /* optional: if you want the smallest images to fill the .thumbnail */
+	/*min-height: 100%;  optional: if you want the smallest images to fill the .thumbnail */
 
 } 
