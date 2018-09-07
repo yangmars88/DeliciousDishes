@@ -1,0 +1,88 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <h1><%= dish.name %></h1> <h4>detail information</h4>
+    <div class="row">                <!--all content within this div will show in same row -->
+        <div class="col-md-3">       <!-- first item in the first row--> 
+            <p class="lead">Dishes Collection</p>   <!--first content in the first item -->
+            <div class="list-group">  <!--second content in first item, will show in the second line under p -->
+                <li class="list-group-item active">Info 1</li>
+            </div>
+            <div id="map"></div>
+        </div>
+        <div class="col-md-9">     <!-- second item in the first row--> 
+             <div class="thumbnail">
+                <img style="width:100%; padding:0 10;" class="img-responsive" src="<%= dish.image %>"> <!--remember the ejs pass variable using name attribute -->
+               <div class="caption-full">
+                <h4 class="pull-right">$<%= dish.price %> per dish</h4>
+                <h4><a><%= dish.name %></a></h4>                     <!--remember the ejs pass variable using name attribute -->
+                <p><%= dish.description %></p>
+                <p><em>Submitted by <%= dish.author.username %></em></p>
+                <% if(currentUser && dish.author.id.equals(currentUser._id)) { %>
+                <a class="btn btn-warning" href="/dishes/<%= dish._id %>/edit">Edit</a>
+                <!--to delete has to use form to post router. delete is to change value in server side,not just showing content from server -->
+                <form id="deleteForm" action="/dishes/<%= dish._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <% } %>
+               </div>
+             </div>
+             <div class="well">   <!--well class adds a rounded border around element with gray background color and some padding -->
+                 <div class="text-right">
+                     <a class="btn btn-success" href="/dishes/<%= dish._id %>/comments/new">Add New Comment</a>
+                 </div>
+                 <hr>
+                 <% dish.comments.forEach(function(comment){ %>
+                 <div class="row">   <!--every comment author and text will be show as one spearte row item.-->
+                     <div class="col-md-12">
+                          
+                         <p><strong><%= comment.author.username %></strong><span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span></p>
+                         <p><%= comment.text %></p>
+                         <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                         <a class="btn btn-xs btn-warning" href="/dishes/<%= dish._id %>/comments/<%= comment._id%>/edit">Edit</a>
+                         <form id="deleteForm2" action="/dishes/<%= dish._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                             <button class="btn btn-xs btn-danger">Delete</button>
+                         </form>
+                         <% } %>
+                     </div>
+                 </div>
+                 <% }); %>
+             </div>
+             <a class="btn btn-primary" href="/dishes">Go Back</a>
+       </div>
+    </div>
+    
+</div>    
+
+<script>
+  function initMap() {
+    var lat = <%= dish.lat %>,
+        lng = <%= dish.lng %>,
+        center = { lat, lng };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <h4><%= dish.name %></h4>
+      <p><em><%= dish.location %></em></p>
+      <p><%= dish.description %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<!--script async defer src="<%= process.env.GOOGLEMAPSAPI %>"></script-->
+<<script async defer 
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhAXj_M3FTdByYi5SJHnKMQn0cEuCVc74&callback=initMap">
+</script>
+

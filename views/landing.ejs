@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share Dishes With Us</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="/stylesheets/landing.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+</head>
+<body>
+  <div class="container">
+    <% if(error && error.length > 0){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+      <div class="alert alert-success" role="alert">
+        <%= success %>
+      </div>
+    <% } %>
+    
+    <%  if(signUp && signUp.length>0) { %>
+  <div class="alert alert-success" role="alert">
+     <%= signUp %> <p id="Currentusername"><em><%= currentUser.username %></em></p>
+ </div>
+  <% } %>
+  </div>
+  
+  <div id="landing-header">
+    <h1><a class="entryLink" href="/dishes">Welcome to Delicious Dishes</a></h1>
+    <a class="entryLink" href="/dishes"><h3>Share and View All Dishes</h3></a>
+    <br>
+    <h5><% include partials/footer %></h5>
+    <img id="profilePic" src="https://lh3.googleusercontent.com/-MG8VNBqrsHc/W5BmIb6QafI/AAAAAAAAArQ/rcH-Dbtt80oDkSW3Yx4x7SYClUfibq9xQCL0BGAs/w829-d-h691-n-rw/%25E5%25BE%25AE%25E4%25BF%25A1%25E5%259B%25BE%25E7%2589%2587_20180905192603.jpg">
+  </div>
+  
+  <ul class="slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div class="container">

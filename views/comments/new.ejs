@@ -1,0 +1,19 @@
+<% include ../partials/header %>
+<h1 style="text-align: center;">Add New Comment to <%= dish.name %></h1>
+<div class="container">
+ <div class="row">
+     <div style="width: 30%; margin: 25px auto;">
+<form action="/dishes/<%= dish._id %>/comments" method="POST">
+    <div class="form-group">  <!--form-group is used to make the length same for below three items -->
+    <input class="form-control" type="text" name="comment[text]"  placeholder="text">   <!--the Name attribute is the key to pass the value back to post page -->
+    </div>
+    <div class="form-group">
+    <button class="btn btn-lg btn-primary btn-block">Submit</button>   <!--btn-primary class will make the button color change -->
+    </div>
+</form>
+        <a href="/dishes">Go Back</a>
+     </div>
+ 
+</div>
+</div>
+<% include ../partials/footer %>

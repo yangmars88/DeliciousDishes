@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+<div class="container">
+ <div class="row">
+     <h1 style="text-align: center">Edit the comment</h1>
+     <div style="width: 30%; margin: 25px auto;">
+    <!--this form come from comments.js ,not dishes.js, there is no dish, so the dish.id will not work, has to use dish_id, which come from comments.js -->
+<form action="/dishes/<%= dish_id%>/comments/<%= comment._id%>/?_method=PUT" method="POST">
+    <div class="form-group">  <!--form-group is used to make the length same for below three items -->
+    <!--to edit the dish, have to pass the current value to the form, so use value attribute -->
+    <input class="form-control" type="text" name="comment[text]" value="<%= comment.text%>" >   <!--the Name attribute is the key to pass the value back to post page -->
+    </div>
+    <div class="form-group">
+    <button class="btn btn-lg btn-primary btn-block">Submit</button>   <!--btn-primary class will make the button color change -->
+    </div>
+</form>
+        <a href="/dishes">Go Back</a>
+     </div>
+ 
+</div>
+</div>
+<% include ../partials/footer %>

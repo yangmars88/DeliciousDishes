@@ -1,0 +1,29 @@
+<% include ../partials/header %>         <!-- landing.ejs is at the same root level with partials folder.so doesn't need / in front of partials -->
+                                         <!-- index.ejs used to be at same level with partials folder, but now in dishes folder, so when refer to partials folder, has to go back to partials same level -->
+<div class="container">
+ <header class="jumbotron">            <!-- jumobron is one class from bootstrap -->
+   <div class="container">            <!-- use container is to keep some edge in the left side of screen when changeing screen size -->
+    <h1>Welcome to Delicious Dishes</h1>
+     <p> &nbsp View our recommanded dishes from resturants all over the world </p>  
+     
+              <!-- 1.Type "nbsp" to add a single space./ Use "br" to add a line break. -->
+    <p><a class="btn btn-primary btn-large" href="/dishes/new">Add New Dishes</a></p>   <!-- btn is one class from bootstrap -->
+   </div>
+ </header>     
+
+  <div class="row text-center" style="display:flex; flex-wrap:wrap;">   <!--this bootstrap class: row will make the dishes show in the same row -->
+    <% dishes.forEach(function(dish){ %>
+      <div class="col-sm-6 col-md-3">   <!--this will make three items in one row when in middle size screen, 6 items when in small size -->
+      <div class="thumbnail ">  <!--Bootstrap's thumbnails are designed to showcase linked images with minimal required markup. -->
+        <div class="img-wrapper">
+        <img src="<%= dish.image %>" >
+        </div>
+        <div class="caption"> <h4><%= dish.name  %></h4></div>
+        <p><a href="/dishes/<%= dish._id %>" class= "btn btn-primary">More Info </a></p>  <!--every dish have an ID, use dish._id to get it -->
+      </div>
+     </div>
+    <% }); %>
+   </div>   
+ </div>
+ 
+<% include ../partials/footer %>
