@@ -1,0 +1,17 @@
+# DeliciousDishes
+
+A Node.js web application project based on the Udemy course - The Web Developer Bootcamp
+
+The website link:https://frozen-wildwood-70437.herokuapp.com/
+
+Functions include:
+
+1.User sign up and log in with username and password
+
+2.create, edit or delete posts and comments created by the owner
+
+3.Responsive web design	
+
+4.Flash messages available according to users' action on the app
+
+
